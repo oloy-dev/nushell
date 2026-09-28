@@ -126,7 +126,7 @@ jobs:
   sha256sum:
     needs: release
     name: Create Sha256sum
-    runs-on: ubuntu-latest
+    runs-on: incredibuild-ubuntu-latest
     permissions:
       # Upload the release archives to the GitHub release.
       contents: write
