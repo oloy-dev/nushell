@@ -1,0 +1,27 @@
+name: e2e698-s4-capacity
+on:
+  push:
+    branches: [e2e698/runner-e2e]
+    paths: ['.github/workflows/e2e698-s4-capacity.yml']
+jobs:
+  cap-hold:
+    runs-on: [incredibuild-runner-e2edd781a, e2e698-s4-hold]
+    timeout-minutes: 20
+    steps:
+      - run: |
+          echo "e2e698 s4 tenant A holds one linux/amd64 slot on $(hostname)"
+          for i in $(seq 1 36); do echo "hold $i $(date -u +%H:%M:%S)"; sleep 10; done
+  cap-a2:
+    runs-on: [incredibuild-runner-e2edd781a, e2e698-s4-a2]
+    timeout-minutes: 45
+    steps:
+      - run: |
+          echo "e2e698 s4 tenant A waiting job ran on $(hostname) at $(date -u +%H:%M:%S)"
+          sleep 20
+  b-cap-b1:
+    runs-on: [incredibuild-runner-e2edd781a, e2e698-s4-b1]
+    timeout-minutes: 45
+    steps:
+      - run: |
+          echo "e2e698 s4 tenant B waiting job ran on $(hostname) at $(date -u +%H:%M:%S)"
+          sleep 20
