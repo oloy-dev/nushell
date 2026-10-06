@@ -1,0 +1,11 @@
+name: e2e698-s2-cancel
+on:
+  push:
+    branches: [e2e698/runner-e2e]
+    paths: ['.github/workflows/e2e698-s2-cancel.yml']
+jobs:
+  s2-cancel:
+    runs-on: [incredibuild-runner-e2edd781a, e2e698-s2]
+    timeout-minutes: 10
+    steps:
+      - run: echo "e2e698 s2 should be cancelled while queued; if this prints, the cancel came too late"
