@@ -13,3 +13,4 @@ jobs:
     timeout-minutes: 10
     steps:
       - run: echo "e2e698 s2b should be cancelled while queued; if this prints, the cancel came too late"
+# v2 cancels v1 via the concurrency group
