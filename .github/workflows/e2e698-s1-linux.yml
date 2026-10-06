@@ -1,0 +1,17 @@
+name: e2e698-s1-linux
+on:
+  push:
+    branches: [e2e698/runner-e2e]
+    paths: ['.github/workflows/e2e698-s1-linux.yml']
+jobs:
+  s1-linux:
+    runs-on: [incredibuild-runner-e2edd781a, e2e698-s1]
+    timeout-minutes: 15
+    steps:
+      - name: facts
+        run: |
+          echo "e2e698 s1 on $(hostname) runner=$RUNNER_NAME"
+          uname -a; nproc; free -m | head -2; df -h / | tail -1
+      - name: work
+        run: |
+          for i in $(seq 1 9); do echo "tick $i $(date -u +%H:%M:%S)"; sleep 10; done
