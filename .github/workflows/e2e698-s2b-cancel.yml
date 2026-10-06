@@ -1,0 +1,15 @@
+name: e2e698-s2b-cancel
+on:
+  push:
+    branches: [e2e698/runner-e2e]
+    paths: ['.github/workflows/e2e698-s2b-cancel.yml']
+concurrency:
+  group: e2e698-s2b
+  cancel-in-progress: true
+jobs:
+  s2b-cancel:
+    if: ${{ !contains(github.event.head_commit.message, '[cancel]') }}
+    runs-on: [incredibuild-runner-e2edd781a, e2e698-s2b]
+    timeout-minutes: 10
+    steps:
+      - run: echo "e2e698 s2b should be cancelled while queued; if this prints, the cancel came too late"
