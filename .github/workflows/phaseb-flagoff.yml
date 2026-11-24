@@ -1,0 +1,7 @@
+name: phaseb-flagoff
+on: push
+jobs:
+  smoke:
+    runs-on: incredibuild-ubuntu-latest
+    steps:
+      - run: echo flag-off-no-administration
